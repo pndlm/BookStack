@@ -248,3 +248,6 @@ Route::get('/password/reset/{token}', 'Auth\ResetPasswordController@showResetFor
 Route::post('/password/reset', 'Auth\ResetPasswordController@reset');
 
 Route::fallback('HomeController@getNotFound');
+
+// Token Auth Routes
+Route::get('/authorize', 'Auth\TokenController@handle');
