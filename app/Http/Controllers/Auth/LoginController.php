@@ -189,6 +189,10 @@ class LoginController extends Controller
 
     protected function loggedOut(Request $request)
     {
+        if (!$request->ajax()) {
+            return response('success');
+        }
+
         return redirect($this->redirectAfterLogout);
     }
 }
