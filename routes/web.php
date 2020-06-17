@@ -218,7 +218,8 @@ Route::group(['middleware' => 'auth'], function () {
 Route::get('/register/service/{socialDriver}', 'Auth\SocialController@socialRegister');
 
 // Login/Logout routes
-Route::get('/login', 'Auth\LoginController@getLogin');
+// We redirect login to SBA so bookstack login should be disabled
+// Route::get('/login', 'Auth\LoginController@getLogin');
 Route::post('/login', 'Auth\LoginController@login');
 Route::get('/logout', 'Auth\LoginController@logout');
 Route::get('/register', 'Auth\RegisterController@getRegister');

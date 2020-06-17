@@ -30,7 +30,7 @@ class LoginController extends Controller
      */
     protected $redirectTo = '/';
     protected $redirectPath = '/';
-    protected $redirectAfterLogout = '/login';
+    protected $redirectAfterLogout;
 
     protected $socialAuthService;
 
@@ -44,7 +44,7 @@ class LoginController extends Controller
 
         $this->socialAuthService = $socialAuthService;
         $this->redirectPath = url('/');
-        $this->redirectAfterLogout = url('/login');
+        $this->redirectAfterLogout = config('streambank.logout_url');
         parent::__construct();
     }
 
@@ -187,4 +187,8 @@ class LoginController extends Controller
         return redirect('/login');
     }
 
+    protected function loggedOut(Request $request)
+    {
+        return redirect($this->redirectAfterLogout);
+    }
 }
