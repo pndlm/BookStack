@@ -10,8 +10,8 @@
 
 return [
 
-    'app-name'             => 'Library',
-    'app-logo'             => '',
+    'app-name'             => '',
+    'app-logo'             => '/logo.svg',
     'app-name-header'      => true,
     'app-editor'           => 'wysiwyg',
     'app-color'            => '#214E72',

@@ -4,11 +4,11 @@
         <div>
             <a href="{{ url('/') }}" class="logo">
                 @if(setting('app-logo', '') !== 'none')
-                    <img class="logo-image" src="{{ setting('app-logo', '') === '' ? url('/logo.png') : url(setting('app-logo', '')) }}" alt="Logo">
+                    <img class="logo-image" src="{{ setting('app-logo', '') === '' ? url('/logo.svg') : url(setting('app-logo', '')) }}" alt="Logo">
                 @endif
-                @if (setting('app-name-header'))
-                    <span class="logo-text">{{ setting('app-name') }}</span>
-                @endif
+                {{--@if (setting('app-name-header'))--}}
+                    {{--<span class="logo-text">{{ setting('app-name') }}</span>--}}
+                {{--@endif--}}
             </a>
             <div class="mobile-menu-toggle hide-over-l">@icon('more')</div>
         </div>
