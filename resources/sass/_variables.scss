@@ -31,10 +31,7 @@ $-xxs: 3px;
 $spacing: (('none', 0), ('xxs', $-xxs), ('xs', $-xs), ('s', $-s), ('m', $-m), ('l', $-l), ('xl', $-xl), ('xxl', $-xxl));
 
 // Fonts
-$text: -apple-system, BlinkMacSystemFont,
-"Segoe UI", "Oxygen", "Ubuntu", "Roboto", "Cantarell",
-"Fira Sans", "Droid Sans", "Helvetica Neue",
-sans-serif;
+$text: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
 $mono: "Lucida Console", "DejaVu Sans Mono", "Ubunto Mono", Monaco, monospace;
 $heading: $text;
 $fs-m: 14px;
@@ -42,8 +39,9 @@ $fs-s: 12px;
 
 // Colours
 :root {
-  --color-primary: #206ea7;
+  --color-primary: #214E72;
   --color-primary-light: rgba(32,110,167,0.15);
+  --color-primary-blue: #4F9DBC;
 
   --color-page: #206ea7;
   --color-page-draft: #7e50b1;
