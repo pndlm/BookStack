@@ -159,20 +159,21 @@
   padding-inline-end: 0;
   position: relative;
 
-  &:after, .sub-menu:after {
-    content: '';
-    display: block;
-    position: absolute;
-    left: $-m;
-    top: 1rem;
-    bottom: 1rem;
-    border-inline-start: 4px solid rgba(0, 0, 0, 0.1);
-    z-index: 0;
-    @include rtl {
-      left: auto;
-      right: $-m;
-    }
-  }
+  // SB-1284 Get rid of left lines
+  //&:after, .sub-menu:after {
+  //  content: '';
+  //  display: block;
+  //  position: absolute;
+  //  left: $-m;
+  //  top: 1rem;
+  //  bottom: 1rem;
+  //  border-inline-start: 4px solid rgba(0, 0, 0, 0.1);
+  //  z-index: 0;
+  //  @include rtl {
+  //    left: auto;
+  //    right: $-m;
+  //  }
+  //}
 
   ul {
     list-style: none;
@@ -431,18 +432,18 @@ ul.pagination {
   &:not(.no-hover) {
     cursor: pointer;
   }
-  &:not(.no-hover):hover {
-    text-decoration: none;
-    background-color: rgba(0, 0, 0, 0.1);
-    border-radius: 4px;
-  }
+  //&:not(.no-hover):hover {
+  //  text-decoration: none;
+  //  background-color: rgba(0, 0, 0, 0.1);
+  //  border-radius: 4px;
+  //}
   &.outline-hover {
     border: 1px solid transparent;
   }
-  &.outline-hover:hover {
-    background-color: transparent;
-    border-color: rgba(0, 0, 0, 0.1);
-  }
+  //&.outline-hover:hover {
+  //  background-color: transparent;
+  //  border-color: rgba(0, 0, 0, 0.1);
+  //}
   &:focus {
     @include lightDark(background-color, #eee, #222);
     outline: 1px dotted #666;
@@ -667,9 +668,9 @@ ul.pagination {
   a:not(.active) {
     @include lightDark(color, #444, #666);
   }
-  a:hover {
-    @include lightDark(background-color, rgba(0, 0, 0, 0.05), rgba(255, 255, 255, 0.05));
-    border-radius: 3px;
-    text-decoration: none;
-  }
+  //a:hover {
+  //  @include lightDark(background-color, rgba(0, 0, 0, 0.05), rgba(255, 255, 255, 0.05));
+  //  border-radius: 3px;
+  //  text-decoration: none;
+  //}
 }

@@ -87,7 +87,7 @@ header .search-box {
   input {
     background-color: rgba(0, 0, 0, 0.2);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 40px;
+    border-radius: 10px;
     color: #EEE;
     z-index: 2;
     padding-inline-start: 40px;
@@ -139,6 +139,21 @@ header .search-box {
   @include margin($-xs, $-s, $-xs, 0);
   vertical-align: top;
   height: 43px;
+}
+.logo-divider {
+  display: inline-block;
+  position: relative;
+  top: 17px;
+  border-right: 1px solid var(--streambank-white);
+  height: 22px;
+}
+.logo-subtext {
+  color: #fff;
+  position: relative;
+  top: 13px;
+  font-size: 20px;
+  font-weight: 300;
+  padding-left: 10px;
 }
 
 .mobile-menu-toggle {
@@ -277,7 +292,8 @@ header .search-box {
     border: 1px solid transparent;
     border-radius: 4px;
     &:hover {
-      border-color: #DDD;
+      //border-color: #DDD;
+      cursor: pointer;
     }
   }
   .svg-icon {
