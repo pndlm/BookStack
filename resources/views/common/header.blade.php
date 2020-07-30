@@ -5,6 +5,8 @@
             <a href="{{ url('/') }}" class="logo">
                 @if(setting('app-logo', '') !== 'none')
                     <img class="logo-image" src="{{ setting('app-logo', '') === '' ? url('/logo.svg') : url(setting('app-logo', '')) }}" alt="Logo">
+                    <div class="logo-divider"></div>
+                    <span class="logo-subtext">Library</span>
                 @endif
                 {{--@if (setting('app-name-header'))--}}
                     {{--<span class="logo-text">{{ setting('app-name') }}</span>--}}
