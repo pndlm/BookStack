@@ -22,7 +22,7 @@ class Authenticate
             if ($request->ajax()) {
                 return response('Unauthorized.', 401);
             } else {
-                return redirect()->to(config('streambank.redirect_url') . '?bookstackUrl=' . $request->route()->uri);
+                return redirect()->to(config('streambank.redirect_url') . '?bookstackUrl=' . $request->path());
             }
         }
 
