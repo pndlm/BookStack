@@ -382,6 +382,56 @@ function customHrPlugin() {
     });
 }
 
+// SB-1355
+function customAnchorPLugin() {
+
+    window.tinymce.PluginManager.add('insertAnchorLink', function (editor) {
+
+        let bkmrk_count = 0;
+
+        function anchor_html (id) {
+            return `
+                <a id="${id}" contenteditable="false" class="mce-item-anchor"></a>
+            `;
+        }
+
+        function insertAnchorTagWithId(bkmrk_id) {
+            editor.selection.setContent( anchor_html(bkmrk_id) )
+        }
+
+        editor.addCommand('setAnchorNodeAndId', function () {
+
+            if (typeof bkmrk_count == "undefined") {
+                bkmrk_count = 0;
+            } else if (document.getElementById("html-editor_ifr") && document.getElementById("html-editor_ifr").contentDocument) {
+                // can find and count existing anchors? Use to set new baseline for incrementing anchors.
+                let num_of_anchors = document.getElementById("html-editor_ifr").contentDocument.querySelectorAll(".mce-item-anchor").length
+                bkmrk_count = num_of_anchors
+            }
+
+            // BUG: TincyMCEv4 ignores anchor IDs and re-processes
+                // IDs into the format "bkmrk--0", incrementing the
+                // number for the number of anchors.
+            let bkmrk_id = `bkmrk--${bkmrk_count++}`;
+
+            // 2 - insert anchor with appopriate new bkmrk_id
+            insertAnchorTagWithId(bkmrk_id);
+        })
+
+        editor.addButton('customAnchor', {
+            icon: 'anchor',
+            tooltip: 'Anchor',
+            cmd: 'setAnchorNodeAndId'
+        });
+
+        editor.addMenuItem('customAnchor', {
+            icon: 'anchor',
+            text: 'Anchor',
+            context: 'insert'
+        });
+    })
+
+}
 
 function listenForBookStackEditorEvents(editor) {
 
@@ -418,7 +468,7 @@ class WysiwygEditor {
         this.textDirection = pageEditor.getAttribute('text-direction');
         this.isDarkMode = document.documentElement.classList.contains('dark-mode');
 
-        this.plugins = "image table textcolor paste link autolink fullscreen imagetools code customhr autosave lists codeeditor media";
+        this.plugins = "image table textcolor paste link autolink insertAnchorLink fullscreen imagetools code customhr autosave lists codeeditor media";
         this.loadPlugins();
 
         this.tinyMceConfig = this.getTinyMceConfig();
@@ -429,6 +479,8 @@ class WysiwygEditor {
     loadPlugins() {
         codePlugin();
         customHrPlugin();
+
+        customAnchorPLugin();        
 
         const drawioUrlElem = document.querySelector('[drawio-url]');
         if (drawioUrlElem) {
@@ -444,7 +496,7 @@ class WysiwygEditor {
 
     getToolBar() {
         const textDirPlugins = this.textDirection === 'rtl' ? 'ltr rtl' : '';
-        return `undo redo | styleselect | bold italic underline strikethrough superscript subscript | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | table image-insert link hr drawio media | removeformat code ${textDirPlugins} fullscreen`
+        return `undo redo | styleselect | bold italic underline strikethrough superscript subscript | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | table image-insert link | customAnchor | hr drawio media | removeformat code ${textDirPlugins} fullscreen`
     }
 
     getTinyMceConfig() {
