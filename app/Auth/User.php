@@ -49,7 +49,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      */
     protected $hidden = [
         'password', 'remember_token', 'system_name', 'email_confirmed', 'external_auth_id', 'email',
-        'created_at', 'updated_at', 'image_id',
+        'created_at', 'updated_at', 'image_id', 'image'
     ];
 
     /**
@@ -202,13 +202,13 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     public function getAvatar($size = 50)
     {
         $default = url('/user_avatar.png');
-        $imageId = $this->image_id;
-        if ($imageId === 0 || $imageId === '0' || $imageId === null) {
+        $image = $this->image;
+        if ($image === null) {
             return $default;
         }
 
         try {
-            $avatar = $this->avatar ? url($this->avatar->getThumb($size, $size, false)) : $default;
+            $avatar = $this->image ? url($this->image) : $default;
         } catch (\Exception $err) {
             $avatar = $default;
         }
