@@ -184,7 +184,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::patch('/users/{id}/update-expansion-preference/{key}', 'UserController@updateExpansionPreference');
         Route::patch('/users/toggle-dark-mode', 'UserController@toggleDarkMode');
         Route::post('/users/create', 'UserController@store');
-        Route::get('/users/{id}', 'UserController@edit');
+        // Hide edit user route
+        // Route::get('/users/{id}', 'UserController@edit');
         Route::put('/users/{id}', 'UserController@update');
         Route::delete('/users/{id}', 'UserController@destroy');
 
