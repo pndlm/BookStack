@@ -147,15 +147,16 @@ class BookshelfRepo
      */
     public function copyDownPermissions(Bookshelf $shelf, $checkUserPermissions = true): int
     {
-        $shelfPermissions = $shelf->permissions()->get(['role_id', 'action'])->toArray();
+        $shelfPermissions = $shelf->permissions()->where('action', '!=', 'book-create')->get(['role_id', 'action'])->toArray();
         $shelfBooks = $shelf->books()->get(['id', 'restricted']);
         $updatedBookCount = 0;
 
         /** @var Book $book */
         foreach ($shelfBooks as $book) {
-            if ($checkUserPermissions && !userCan('restrictions-manage', $book)) {
-                continue;
-            }
+            // We copy down permissions after book creation now so we don't need this check
+//            if ($checkUserPermissions && !userCan('restrictions-manage', $book)) {
+//                continue;
+//            }
             $book->permissions()->delete();
             $book->restricted = $shelf->restricted;
             $book->permissions()->createMany($shelfPermissions);

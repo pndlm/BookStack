@@ -5,6 +5,7 @@ use BookStack\Entities\Managers\BookContents;
 use BookStack\Entities\Bookshelf;
 use BookStack\Entities\Managers\EntityContext;
 use BookStack\Entities\Repos\BookRepo;
+use BookStack\Entities\Repos\BookshelfRepo;
 use BookStack\Exceptions\ImageUploadException;
 use BookStack\Exceptions\NotifyException;
 use Illuminate\Http\Request;
@@ -16,14 +17,19 @@ class BookController extends Controller
 {
 
     protected $bookRepo;
+    protected $bookshelfRepo;
     protected $entityContextManager;
+    /**
+     * @var BookshelfRepo
+     */
 
     /**
      * BookController constructor.
      */
-    public function __construct(EntityContext $entityContextManager, BookRepo $bookRepo)
+    public function __construct(EntityContext $entityContextManager, BookRepo $bookRepo, BookshelfRepo $bookshelfRepo)
     {
         $this->bookRepo = $bookRepo;
+        $this->bookshelfRepo = $bookshelfRepo;
         $this->entityContextManager = $entityContextManager;
         parent::__construct();
     }
@@ -61,12 +67,15 @@ class BookController extends Controller
      */
     public function create(string $shelfSlug = null)
     {
-        $this->checkPermission('book-create-all');
-
         $bookshelf = null;
         if ($shelfSlug !== null) {
             $bookshelf = Bookshelf::visible()->where('slug', '=', $shelfSlug)->firstOrFail();
             $this->checkOwnablePermission('bookshelf-update', $bookshelf);
+            $this->checkPermissionOr('book-create-all', function () use ($bookshelf) {
+                return userCan('book-create', $bookshelf);
+            });
+        } else {
+            $this->checkPermission('book-create-all');
         }
 
         $this->setPageTitle(trans('entities.books_create'));
@@ -82,7 +91,6 @@ class BookController extends Controller
      */
     public function store(Request $request, string $shelfSlug = null)
     {
-        $this->checkPermission('book-create-all');
         $this->validate($request, [
             'name' => 'required|string|max:255',
             'description' => 'string|max:1000',
@@ -93,6 +101,11 @@ class BookController extends Controller
         if ($shelfSlug !== null) {
             $bookshelf = Bookshelf::visible()->where('slug', '=', $shelfSlug)->firstOrFail();
             $this->checkOwnablePermission('bookshelf-update', $bookshelf);
+            $this->checkPermissionOr('book-create-all', function () use ($bookshelf) {
+                return userCan('book-create', $bookshelf);
+            });
+        } else {
+            $this->checkPermission('book-create-all');
         }
 
         $book = $this->bookRepo->create($request->all());
@@ -101,6 +114,7 @@ class BookController extends Controller
 
         if ($bookshelf) {
             $bookshelf->appendBook($book);
+            $this->bookshelfRepo->copyDownPermissions($bookshelf);
             Activity::add($bookshelf, 'bookshelf_update');
         }
 
