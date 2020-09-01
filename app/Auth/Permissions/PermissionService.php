@@ -426,6 +426,9 @@ class PermissionService
         if ($entity->isA('book')) {
             $baseActions[] = 'chapter-create';
         }
+        if ($entity->isA('bookshelf')) {
+            $baseActions[] = 'book-create';
+        }
         return $baseActions;
     }
 
