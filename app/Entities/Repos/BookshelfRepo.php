@@ -153,10 +153,9 @@ class BookshelfRepo
 
         /** @var Book $book */
         foreach ($shelfBooks as $book) {
-            // We copy down permissions after book creation now so we don't need this check
-//            if ($checkUserPermissions && !userCan('restrictions-manage', $book)) {
-//                continue;
-//            }
+            if ($checkUserPermissions && !userCan('restrictions-manage', $book)) {
+                continue;
+            }
             $book->permissions()->delete();
             $book->restricted = $shelf->restricted;
             $book->permissions()->createMany($shelfPermissions);

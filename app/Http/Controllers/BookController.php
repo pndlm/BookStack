@@ -114,7 +114,7 @@ class BookController extends Controller
 
         if ($bookshelf) {
             $bookshelf->appendBook($book);
-            $this->bookshelfRepo->copyDownPermissions($bookshelf);
+            $this->bookshelfRepo->copyDownPermissions($bookshelf, false);
             Activity::add($bookshelf, 'bookshelf_update');
         }
 
