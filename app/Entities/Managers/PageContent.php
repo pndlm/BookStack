@@ -52,11 +52,14 @@ class PageContent
         }
 
         // Ensure no duplicate ids within child items
-        $xPath = new DOMXPath($doc);
-        $idElems = $xPath->query('//body//*//*[@id]');
-        foreach ($idElems as $domElem) {
-            $this->setUniqueId($domElem, $idMap);
-        }
+
+        // SB-1355 Remove logic that overwrites DOM ids since we need them to reference anchors
+        // and just trust that users don't create non unique ids
+//        $xPath = new DOMXPath($doc);
+//        $idElems = $xPath->query('//body//*//*[@id]');
+//        foreach ($idElems as $domElem) {
+//            $this->setUniqueId($domElem, $idMap);
+//        }
 
         // Generate inner html as a string
         $html = '';

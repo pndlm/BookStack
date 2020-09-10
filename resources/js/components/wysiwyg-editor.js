@@ -417,7 +417,7 @@ class WysiwygEditor {
         this.textDirection = this.$opts.textDirection;
         this.isDarkMode = document.documentElement.classList.contains('dark-mode');
 
-        this.plugins = "image table textcolor paste link autolink fullscreen code customhr autosave lists codeeditor media";
+        this.plugins = "image table textcolor paste link anchor autolink fullscreen imagetools code customhr autosave lists codeeditor media";
         this.loadPlugins();
 
         this.tinyMceConfig = this.getTinyMceConfig();
@@ -443,7 +443,7 @@ class WysiwygEditor {
 
     getToolBar() {
         const textDirPlugins = this.textDirection === 'rtl' ? 'ltr rtl' : '';
-        return `undo redo | styleselect | bold italic underline strikethrough superscript subscript | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | table image-insert link hr drawio media | removeformat code ${textDirPlugins} fullscreen`
+        return `undo redo | styleselect | bold italic underline strikethrough superscript subscript | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | table image-insert link anchor hr drawio media | removeformat code ${textDirPlugins} fullscreen`
     }
 
     getTinyMceConfig() {
