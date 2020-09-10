@@ -373,16 +373,17 @@ body.mce-fullscreen, body.markdown-fullscreen {
     margin: 0;
     bottom: 0;
   }
-  &:after {
-    content: '';
-    position: absolute;
-    background-color: currentColor;
-    opacity: 0.2;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-  }
+  // SB-1284 Get rid of circles on icons
+  //&:after {
+  //  content: '';
+  //  position: absolute;
+  //  background-color: currentColor;
+  //  opacity: 0.2;
+  //  left: 0;
+  //  top: 0;
+  //  width: 100%;
+  //  height: 100%;
+  //}
 }
 
 .entity-chip {

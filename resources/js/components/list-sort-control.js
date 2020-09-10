@@ -28,6 +28,10 @@ class ListSortControl {
     sortOptionClick(event) {
         const sortOption = event.target.closest('[data-sort-value]');
         this.sortInput.value = sortOption.getAttribute('data-sort-value');
+        const sortDir = sortOption.getAttribute('data-order-value');
+        if (sortDir) {
+            this.orderInput.value = sortDir;
+        }
         event.preventDefault();
         this.form.submit();
     }
