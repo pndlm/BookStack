@@ -63,12 +63,6 @@
                                 <a href="{{ url("/user/{$currentUser->id}") }}">@icon('user'){{ trans('common.view_profile') }}</a>
                             </li>
                             <li>
-                                <a href="{{ url("/settings/users/{$currentUser->id}") }}">@icon('edit'){{ trans('common.edit_profile') }}</a>
-                            </li>
-                            <li>
-                                <a href="{{ config('streambank.domain') }}">@icon('link')StreamBank Admin</a>
-                            </li>
-                            <li>
                                 @if(config('auth.method') === 'saml2')
                                     <a href="{{ url('/saml2/logout') }}">@icon('logout'){{ trans('auth.logout') }}</a>
                                 @else
