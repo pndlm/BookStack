@@ -7,6 +7,7 @@ use BookStack\Auth\UserRepo;
 use BookStack\Exceptions\UserUpdateException;
 use BookStack\Uploads\ImageRepo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class UserController extends Controller
@@ -243,7 +244,12 @@ class UserController extends Controller
      */
     public function showProfilePage($id)
     {
+        $currentUser = Auth::user();
         $user = $this->userRepo->getById($id);
+
+        if ($currentUser !== $user && !$currentUser->hasSystemRole('admin')) {
+            $this->showPermissionError();
+        }
 
         $userActivity = $this->userRepo->getActivity($user);
         $recentlyCreated = $this->userRepo->getRecentlyCreated($user, 5);
