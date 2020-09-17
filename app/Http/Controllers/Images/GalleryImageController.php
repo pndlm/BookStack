@@ -30,7 +30,7 @@ class GalleryImageController extends Controller
         $page = $request->get('page', 1);
         $searchTerm = $request->get('search', null);
         $uploadedToFilter = $request->get('uploaded_to', null);
-        $parentTypeFilter = $request->get('filter_type', null);
+        $parentTypeFilter = $request->get('filter_type', 'book');
 
         $imgData = $this->imageRepo->getEntityFiltered('gallery', $parentTypeFilter, $page, 24, $uploadedToFilter, $searchTerm);
         return view('components.image-manager-list', [
