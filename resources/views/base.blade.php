@@ -10,7 +10,7 @@
     <meta name="token" content="{{ csrf_token() }}">
     <meta name="base-url" content="{{ url('/') }}">
     <meta charset="utf-8">
-
+    <link rel="icon" href="{{ asset('favicon.png') }}" type="image/png"/>
     <!-- Styles and Fonts -->
     <link rel="stylesheet" href="{{ versioned_asset('dist/styles.css') }}">
     <link rel="stylesheet" media="print" href="{{ versioned_asset('dist/print-styles.css') }}">
