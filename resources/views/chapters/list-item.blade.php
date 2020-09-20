@@ -2,9 +2,9 @@
     <span class="icon text-chapter">@icon('chapter')</span>
     <div class="content">
         <h4 class="entity-list-item-name break-text">{{ $chapter->name }}</h4>
-        <div class="entity-item-snippet">
-            <p class="text-muted break-text mb-s">{{ $chapter->getExcerpt() }}</p>
-        </div>
+{{--        <div class="entity-item-snippet">--}}
+{{--            <p class="text-muted break-text mb-s">{{ $chapter->getExcerpt() }}</p>--}}
+{{--        </div>--}}
     </div>
 </a>
 @if ($chapter->hasChildren())
