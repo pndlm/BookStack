@@ -42,13 +42,7 @@
                     <tr>
                         <td class="text-center" style="line-height: 0;"><img class="avatar med" src="{{ $user->getAvatar(40)}}" alt="{{ $user->name }}"></td>
                         <td>
-                            @if(userCan('users-manage') || $currentUser->id == $user->id)
-                                <a href="{{ url("/settings/users/{$user->id}") }}">
-                                    @endif
-                                    {{ $user->name }} <br> <span class="text-muted">{{ $user->email }}</span>
-                                    @if(userCan('users-manage') || $currentUser->id == $user->id)
-                                </a>
-                            @endif
+                            {{ $user->name }} <br> <span class="text-muted">{{ $user->email }}</span>
                         </td>
                         <td>
                             @foreach($user->roles as $index => $role)
