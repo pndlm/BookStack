@@ -10,6 +10,6 @@
         @endif
     @endif
 
-    <p class="text-muted break-text">{{ $entity->getExcerpt() }}</p>
+{{--    <p class="text-muted break-text">{{ $entity->getExcerpt() }}</p>--}}
 </div>
 @endcomponent
