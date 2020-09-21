@@ -225,4 +225,16 @@ class ExportService
         }
         return $text;
     }
+
+    /**
+     * Increases the memory limit to match the EXPORT_MEMORY_LIMIT
+     * env setting if it exists.
+     */
+    public function increaseMemoryLimit()
+    {
+        $exportMemoryLimit = env('EXPORT_MEMORY_LIMIT') * 1024 * 1024;
+        if ($exportMemoryLimit && $exportMemoryLimit > trim(ini_get('memory_limit'))) {
+            ini_set('memory_limit', $exportMemoryLimit);
+        }
+    }
 }
