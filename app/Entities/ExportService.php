@@ -232,7 +232,7 @@ class ExportService
      */
     public function increaseMaximumExecutionTime()
     {
-        $exportMaxExecutionTime = env('EXPORT_MAX_EXECUTION_TIME');
+        $exportMaxExecutionTime = config('app.export_max_execution_time');
         if ($exportMaxExecutionTime && $exportMaxExecutionTime > trim(ini_get('max_execution_time'))) {
             ini_set('max_execution_time', $exportMaxExecutionTime);
         }
@@ -244,7 +244,7 @@ class ExportService
      */
     public function increaseMemoryLimit()
     {
-        $exportMemoryLimit = env('EXPORT_MEMORY_LIMIT') * 1024 * 1024;
+        $exportMemoryLimit = config('app.export_memory_limit') * 1024 * 1024;
         if ($exportMemoryLimit && $exportMemoryLimit > trim(ini_get('memory_limit'))) {
             ini_set('memory_limit', $exportMemoryLimit);
         }

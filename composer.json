@@ -19,6 +19,8 @@
         "facade/ignition": "^1.4",
         "fideloper/proxy": "^4.0",
         "gathercontent/htmldiff": "^0.2.1",
+        "h4cc/wkhtmltoimage-amd64": "0.12.x",
+        "h4cc/wkhtmltopdf-amd64": "0.12.x",
         "intervention/image": "^2.5",
         "laravel/framework": "^6.18",
         "laravel/socialite": "^4.3.2",
