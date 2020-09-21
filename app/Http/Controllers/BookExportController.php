@@ -19,6 +19,7 @@ class BookExportController extends Controller
     {
         $this->bookRepo = $bookRepo;
         $this->exportService = $exportService;
+        $this->exportService->increaseMaximumExecutionTime();
         $this->exportService->increaseMemoryLimit();
         parent::__construct();
     }

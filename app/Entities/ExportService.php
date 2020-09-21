@@ -227,7 +227,19 @@ class ExportService
     }
 
     /**
-     * Increases the memory limit to match the EXPORT_MEMORY_LIMIT
+     * Increases the max_execution_time to match the EXPORT_MAX_EXECUTION_TIME
+     * env setting if it exists.
+     */
+    public function increaseMaximumExecutionTime()
+    {
+        $exportMaxExecutionTime = env('EXPORT_MAX_EXECUTION_TIME');
+        if ($exportMaxExecutionTime && $exportMaxExecutionTime > trim(ini_get('max_execution_time'))) {
+            ini_set('max_execution_time', $exportMaxExecutionTime);
+        }
+    }
+
+    /**
+     * Increases the memory_limit to match the EXPORT_MEMORY_LIMIT
      * env setting if it exists.
      */
     public function increaseMemoryLimit()

@@ -18,6 +18,7 @@ class ChapterExportController extends Controller
     {
         $this->chapterRepo = $chapterRepo;
         $this->exportService = $exportService;
+        $this->exportService->increaseMaximumExecutionTime();
         $this->exportService->increaseMemoryLimit();
         parent::__construct();
     }

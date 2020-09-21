@@ -23,6 +23,7 @@ class PageExportController extends Controller
     {
         $this->pageRepo = $pageRepo;
         $this->exportService = $exportService;
+        $this->exportService->increaseMaximumExecutionTime();
         $this->exportService->increaseMemoryLimit();
         parent::__construct();
     }
