@@ -225,4 +225,28 @@ class ExportService
         }
         return $text;
     }
+
+    /**
+     * Increases the max_execution_time to match the EXPORT_MAX_EXECUTION_TIME
+     * env setting if it exists.
+     */
+    public function increaseMaximumExecutionTime()
+    {
+        $exportMaxExecutionTime = config('app.export_max_execution_time');
+        if ($exportMaxExecutionTime && $exportMaxExecutionTime > trim(ini_get('max_execution_time'))) {
+            ini_set('max_execution_time', $exportMaxExecutionTime);
+        }
+    }
+
+    /**
+     * Increases the memory_limit to match the EXPORT_MEMORY_LIMIT
+     * env setting if it exists.
+     */
+    public function increaseMemoryLimit()
+    {
+        $exportMemoryLimit = config('app.export_memory_limit') * 1024 * 1024;
+        if ($exportMemoryLimit && $exportMemoryLimit > trim(ini_get('memory_limit'))) {
+            ini_set('memory_limit', $exportMemoryLimit);
+        }
+    }
 }

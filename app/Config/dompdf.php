@@ -219,7 +219,7 @@ return [
          *
          * @var bool
          */
-        "DOMPDF_ENABLE_JAVASCRIPT" => true,
+        "DOMPDF_ENABLE_JAVASCRIPT" => false,
 
         /**
          * Enable remote file access

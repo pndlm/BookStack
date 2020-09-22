@@ -11,7 +11,7 @@
 return [
     'pdf' => [
         'enabled' => true,
-        'binary'  => file_exists(base_path('wkhtmltopdf')) ? base_path('wkhtmltopdf') : env('WKHTMLTOPDF', false),
+        'binary'  => base_path('vendor/h4cc/wkhtmltopdf-amd64/bin/wkhtmltopdf-amd64'),
         'timeout' => false,
         'options' => [
             'outline' => true
@@ -20,7 +20,7 @@ return [
     ],
     'image' => [
         'enabled' => false,
-        'binary'  => '/usr/local/bin/wkhtmltoimage',
+        'binary'  => base_path('vendor/h4cc/wkhtmltoimage-amd64/bin/wkhtmltoimage-amd64'),
         'timeout' => false,
         'options' => [],
         'env'     => [],

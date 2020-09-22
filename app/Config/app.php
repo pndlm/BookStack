@@ -75,6 +75,10 @@ return [
     // Encryption cipher
     'cipher' => 'AES-256-CBC',
 
+    'export_max_execution_time' => env('EXPORT_MAX_EXECUTION_TIME'),
+
+    'export_memory_limit' => env('EXPORT_MEMORY_LIMIT'),
+
     // Application Services Provides
     'providers' => [
 
