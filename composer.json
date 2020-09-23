@@ -94,7 +94,8 @@
         "sort-packages": true,
         "platform": {
             "php": "7.2.0"
-        }
+        },
+        "discard-changes": true
     },
     "extra": {
         "laravel": {
