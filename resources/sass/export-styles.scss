@@ -40,3 +40,8 @@ pre:after {
 pre code {
   white-space: pre-wrap;
 }
+
+// Prevent page break in table
+table, tr, td, th, tbody, thead, tfoot {
+  page-break-inside: avoid !important;
+}
