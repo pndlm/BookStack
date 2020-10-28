@@ -13,7 +13,7 @@ class TokenController extends Controller
     public function handle(Request $request) {
         $token = $request->get('token');
         $path = $request->get('redirect');
-        $now = Carbon::now()->timestamp;
+        $now = Carbon::now();
 
         $user = User::where('external_auth_id', $token)->where('expires_at', '>=', $now)->first();
 
