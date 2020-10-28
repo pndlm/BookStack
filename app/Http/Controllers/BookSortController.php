@@ -72,7 +72,7 @@ class BookSortController extends Controller
             $this->showPermissionError();
         }
 
-        // Rebuild permissions and add activity for involved books.
+        // Add activity for involved books.
         $booksInvolved->each(function (Book $book) {
             Activity::add($book, 'book_sort', $book->id);
         });
