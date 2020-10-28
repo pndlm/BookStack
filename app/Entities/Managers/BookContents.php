@@ -121,9 +121,9 @@ class BookContents
         });
 
         // Update permissions and activity.
-        $booksInvolved->each(function (Book $book) {
-            $book->rebuildPermissions();
-        });
+//        $booksInvolved->each(function (Book $book) {
+//            $book->rebuildPermissions();
+//        });
 
         return $booksInvolved;
     }
