@@ -54,6 +54,7 @@ class PermissionsRepo
      */
     public function saveNewRole(array $roleData): Role
     {
+        $roleData['system_name'] = Str::snake($roleData['display_name']);
         $role = $this->role->newInstance($roleData);
         $role->save();
 

@@ -17,7 +17,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Role extends Model
 {
 
-    protected $fillable = ['display_name', 'description', 'external_auth_id'];
+    protected $fillable = ['display_name', 'description', 'system_name', 'external_auth_id'];
 
     /**
      * The roles that belong to the role.
